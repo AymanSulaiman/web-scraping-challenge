@@ -11,5 +11,5 @@ def index():
 def scraper():
     pass
 
-if __name == "__main__":
+if __name__ == "__main__":
     app.run(Debug = True)
