@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col text-center">
                     <h1 class="display-3">Mission to Mars</h1>  
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Scrape New Data</a></p>
+                    <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
                 </div>
             </div>   
         </div>
@@ -28,17 +28,39 @@
     <!--Latest Mars News-->
     <div>
         <h3>Latest Mars News</h3>
+        <h4>{{ mars_data.title_1 }}</h4>
+        <p>{{ mars_data.paragraph }}</p>
     </div>
     <!--Latest Mars News-->
 
     <!--Featured Mars Image-->
     <div>
         <h3>Featured Mars Image</h3>
+        <img src="{{mars_data.featured_img_url}}">
     </div>
     <!--Featured Mars Image-->
 
+    <!--Mars Weather Update-->
     <div>
-        <h3>Mars Hemisphere</h3>
+        <h3>Mars Weather Update</h3>
+        <p>{{ mars_data.weather_update }}</p>
+    </div>
+    <!--Mars Weather Update-->
+    
+    <!--Mars Facts-->
+    <div>
+        <h3>Mars Facts</h3>
+        <p>use Jupyter notebook to export the facts as a html table</p>
+    </div>
+    <!--Mars Facts-->
+
+    <!--Mars Hemispheres-->
+    <div>
+        <h3>Mars's Hemispheres</h3>
+        {% for i in mars_data.hemisphere_image_urls %}
+            <p>{{ i.title }}</p>
+            <img src="{{ i.img_url }}">
+        {% endfor %}
     </div>
 
 </body>
