@@ -126,7 +126,7 @@ def scrape():
     soup = bs(html, 'html.parser')
     article = soup.find('article', class_='carousel_item')
     image_extension  = article['style'].split("('", 1)[1].split("')")[0]
-    featured_img_url = f'jpl.nasa.gov{image_extension}'
+    featured_img_url = f'https://www.jpl.nasa.gov{image_extension}'
     browser.quit()
     ###########################
     ## JPL Mars Space Images ##
@@ -155,16 +155,17 @@ def scrape():
     url = 'https://space-facts.com/mars/'
     browser.visit(url)
     html = browser.html
-    mars_facts = pd.read_html(html)[2]
+    mars_facts = pd.read_html(html)[1]
     mars_facts.columns = ['','Mars Values']
     mars_facts.set_index('', inplace = True)
     browser.quit()
-    mars_facts.to_html(os.path.join('templates','mars_facts.html'))
+    mars_facts_1 = mars_facts.to_html(index=True,justify='left')
+    # mars_facts
     # return mars_facts
     #################
     ## Mars Facts  ##
     #################
-
+    
 
     #######################
     ## Mars Hemispheres  ##
@@ -205,7 +206,7 @@ def scrape():
         "paragraph": paragraph,
         "featured_img_url": featured_img_url,
         "weather_update": weather_update,
-        # "mars_facts": mars_facts,
+        "mars_facts": mars_facts_1,
         "hemisphere_image_urls": hemisphere_image_urls
     }
 
@@ -215,4 +216,4 @@ def scrape():
 
     return mars_data
 
-print(scrape())
+# print(scrape())
